@@ -30,9 +30,8 @@ public class Financiamento {
 
     public void demonstrarFinanciamento() {
         double total = calcularPagamentoTotal();
-
+        System.out.printf("O valor do imóvel é: %.2f\n", valorImovel);
         System.out.printf("O valor total do financiamento é: %.2f\n", total);
-        System.out.printf("O valor do imóvel é: %.2f", valorImovel);
     }
 
     public double calcularMensalidade() {
