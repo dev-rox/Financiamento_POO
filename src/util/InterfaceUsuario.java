@@ -3,16 +3,23 @@ package util;
 import java.util.Scanner;
 
 public class InterfaceUsuario {
-    public double inserirValorImovel() {
+
+
+    /*
+    No método "inserirValorImovel()" abaixo, utilizei a palavra-chave throws para indicar que o método pode gerar uma
+    exceção do tipo ValorInvalidoException.
+    Quem chamar esse método deve estar preparado para tratar a exceção (usando try/catch) ou propagá-la para cima na pilha de chamadas.
+    No caso, o tratamento está sendo feito em Main.java na execução do código.
+    */
+
+    public double inserirValorImovel() throws ValorInvalidoException{
         Scanner sc = new Scanner(System.in);
         double a;
-        do {
-            System.out.println("Digite o valor do imóvel: ");
-            a = sc.nextDouble();
+        System.out.println("Digite o valor do imóvel: ");
+            a = Double.parseDouble(sc.nextLine());
             if (a < 0) {
-                System.out.println("Valor inválido, insira um valor positivo.");
+                throw new ValorInvalidoException("Erro: Valor inválido, insira um valor positivo.");
             }
-        } while (a < 0);
         return a;
     }
 

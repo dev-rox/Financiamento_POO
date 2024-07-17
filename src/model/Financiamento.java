@@ -1,6 +1,10 @@
 package model;
 
-public class Financiamento {
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
+public abstract class Financiamento implements Serializable {
 
     private double valorImovel;
     private int prazoFinanciamento;
@@ -26,31 +30,25 @@ public class Financiamento {
         return taxaJurosAnual;
     }
 
-    //    metodos
+    // metodos
 
     public void demonstrarFinanciamento() {
         double total = calcularPagamentoTotal();
         System.out.printf("O valor do imóvel é: %.2f\n", valorImovel);
+        System.out.printf("O valor da mensalidade é: %.2f\n", calcularMensalidade());
         System.out.printf("O valor total do financiamento é: %.2f\n", total);
     }
 
-    public double calcularMensalidade() {
-        return (this.valorImovel / (this.prazoFinanciamento * 12)) * (1 + (this.taxaJurosAnual / 12));
-
-    }
+    public abstract double calcularMensalidade();
 
     public double calcularPagamentoTotal() {
-        return calcularMensalidade() * prazoFinanciamento * 12;
+        return calcularMensalidade() * (prazoFinanciamento * 12);
     }
 
     @Override
     public String toString() {
-        return "model.Financiamento{" +
-                "valor=" + this.valorImovel +
-                ", prazo=" + this.prazoFinanciamento +
-                ", juros=" + this.taxaJurosAnual +
-                '}';
+        return "\nValor do imovel: " + valorImovel +
+                "\nPrazo do financiamento: " + prazoFinanciamento +
+                "\nTaxa de Juros: " + taxaJurosAnual;
     }
-
-
 }
